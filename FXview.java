@@ -1,15 +1,16 @@
 import javafx.application.Application;
 import javafx.scene.Group;
 import javafx.scene.Scene;
-import javafx.scene.paint.Color;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 import javafx.scene.control.Button;
 import javafx.scene.shape.Rectangle;
 
 public class FXview extends Application {
 
-    private static final int WIDTH = 1100;
-    private static final int HEIGHT= 900;
+    private static final int WIDTH = 600;
+    private static final int HEIGHT= 700;
     private static final int BOX_WIDTH = 33;
     private static final int BOX_HEIGHT= 33;
     private static final int BOX_ROWS = 10;
@@ -62,6 +63,7 @@ public class FXview extends Application {
             win.setVisible(true);
             lose.setVisible(true);
             gameData.gameState = 1;
+            gameData.placeBombs();
         });
         win.setOnAction(event -> {
             again.setVisible(true);
@@ -86,7 +88,12 @@ public class FXview extends Application {
         });
 
         //add UI elements
-        root.getChildren().addAll(start,win,lose,again);
+
+        Image flagImage = new Image("flag.png");
+        ImageView flag = new ImageView();
+        flag.setImage(flagImage);
+
+        root.getChildren().addAll(start,win,lose,again,flag);
 
         //Setup GridBox Events and add grid to group
         for (int a = 0; a < gameData.grid.length; a++){
@@ -97,11 +104,13 @@ public class FXview extends Application {
                     //If game is running ( == 1)
                     if (gameData.gameState == 1) {
                         if (event.getButton().toString().equals("PRIMARY")) {
-                            gridShapes[aa][bb].setFill(Color.SIENNA);
+//                            gridShapes[aa][bb].setFill(Color.SIENNA);
+                            gridShapes[aa][bb].setStyle("-fx-fill: #1111ff;");
                             gameData.grid[aa][bb][0] = 1;
                         }
                         if(event.getButton().toString().equals("SECONDARY")) {
-                            gridShapes[aa][bb].setFill(Color.ROYALBLUE);
+//                            gridShapes[aa][bb].setStyle("");
+//                            gridShapes[aa][bb].set
                             gameData.grid[aa][bb][0] = 2;
                         }
                     }
