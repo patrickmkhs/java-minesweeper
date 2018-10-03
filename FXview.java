@@ -11,8 +11,8 @@ public class FXview extends Application {
 
     private static final int WIDTH = 600;
     private static final int HEIGHT= 700;
-    private static final int BOX_WIDTH = 33;
-    private static final int BOX_HEIGHT= 33;
+    private static final int BOX_WIDTH = 30;
+    private static final int BOX_HEIGHT= 30;
     private static final int BOX_ROWS = 10;
     private static final int BOX_COLS= 10;
     private static final int BOX_MARGIN= 2;
@@ -24,17 +24,22 @@ public class FXview extends Application {
         //creating a new game grid object
         MSModel gameData = new MSModel(BOX_ROWS,BOX_COLS);
 
+        //create image objects
+        Image flagImage = new Image("flag.png");
+        Image coveredImage = new Image("covered.png");
+        Image emptyImage = new Image("empty.png");
+        Image bombImage = new Image("bomb.png");
+
         //creating array of rectangle objects
-        Rectangle[][] gridShapes = new Rectangle[BOX_ROWS][BOX_COLS];
+        ImageView[][] gridImages = new ImageView[BOX_ROWS][BOX_COLS];
         for (int a = 0; a < gameData.grid.length; a++){
             for (int b = 0; b < gameData.grid[a].length; b++){
-                Rectangle r = new Rectangle();
-                r.setX((BOX_WIDTH + BOX_MARGIN) * (a+1) + BOX_X_OFFSET);
-                r.setY((BOX_HEIGHT + BOX_MARGIN)* (b+1) + BOX_Y_OFFSET);
-                r.setWidth(BOX_WIDTH);
-                r.setHeight(BOX_HEIGHT);
-                gridShapes[a][b] = r;
-                System.out.println(gridShapes[a][b]);
+                ImageView iv = new ImageView();
+                iv.setImage(coveredImage);
+                iv.setX((BOX_WIDTH + BOX_MARGIN) * (a+1) + BOX_X_OFFSET);
+                iv.setY((BOX_HEIGHT + BOX_MARGIN)* (b+1) + BOX_Y_OFFSET);
+                gridImages[a][b] = iv;
+                System.out.println(gridImages[a][b]);
             }
         }
 
@@ -89,33 +94,27 @@ public class FXview extends Application {
 
         //add UI elements
 
-        Image flagImage = new Image("flag.png");
-        ImageView flag = new ImageView();
-        flag.setImage(flagImage);
-
-        root.getChildren().addAll(start,win,lose,again,flag);
+        root.getChildren().addAll(start,win,lose,again);
 
         //Setup GridBox Events and add grid to group
         for (int a = 0; a < gameData.grid.length; a++){
             for (int b = 0; b < gameData.grid[a].length; b++){
                 final int aa = a;
                 final int bb = b;
-                gridShapes[a][b].setOnMouseClicked(event -> {
+                gridImages[a][b].setOnMouseClicked(event -> {
                     //If game is running ( == 1)
                     if (gameData.gameState == 1) {
                         if (event.getButton().toString().equals("PRIMARY")) {
-//                            gridShapes[aa][bb].setFill(Color.SIENNA);
-                            gridShapes[aa][bb].setStyle("-fx-fill: #1111ff;");
+                            gridImages[aa][bb].setImage(bombImage);
                             gameData.grid[aa][bb][0] = 1;
                         }
                         if(event.getButton().toString().equals("SECONDARY")) {
-//                            gridShapes[aa][bb].setStyle("");
-//                            gridShapes[aa][bb].set
+                            gridImages[aa][bb].setImage(flagImage);
                             gameData.grid[aa][bb][0] = 2;
                         }
                     }
                 });
-                root.getChildren().add(gridShapes[a][b]);
+                root.getChildren().add(gridImages[a][b]);
             }
         }
 
