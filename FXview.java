@@ -29,6 +29,14 @@ public class FXview extends Application {
         Image coveredImage = new Image("covered.png");
         Image emptyImage = new Image("empty.png");
         Image bombImage = new Image("bomb.png");
+        Image oneImage = new Image("1.png");
+        Image twoImage = new Image("2.png");
+        Image threeImage = new Image("3.png");
+        Image fourImage = new Image("4.png");
+        Image fiveImage = new Image("5.png");
+        Image sixImage = new Image("6.png");
+        Image sevenImage = new Image("7.png");
+        Image eightImage = new Image("8.png");
 
         //creating array of rectangle objects
         ImageView[][] gridImages = new ImageView[BOX_ROWS][BOX_COLS];
@@ -107,8 +115,10 @@ public class FXview extends Application {
                         if (event.getButton().toString().equals("PRIMARY")) {
                             //if state is covered -> reveal
                                 //if bomb then DIE else update board and continue
-                            gameData.grid[aa][bb][0] = 1;
-                            gridImages[aa][bb].setImage(emptyImage);
+                            if(gameData.grid[aa][bb][0] == 1)
+                                gridImages[aa][bb].setImage(bombImage);
+                            else
+                                gridImages[aa][bb].setImage(emptyImage);
                         }
                         if(event.getButton().toString().equals("SECONDARY")) {
                             gridImages[aa][bb].setImage(flagImage);
