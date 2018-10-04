@@ -105,7 +105,7 @@ public class FXview extends Application {
                     //If game is running ( == 1)
                     if (gameData.gameState == 1) {
                         if (event.getButton().toString().equals("PRIMARY")) {
-                            gridImages[aa][bb].setImage(bombImage);
+                            gridImages[aa][bb].setImage(emptyImage);
                             gameData.grid[aa][bb][0] = 1;
                         }
                         if(event.getButton().toString().equals("SECONDARY")) {
