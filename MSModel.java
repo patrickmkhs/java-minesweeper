@@ -1,3 +1,5 @@
+import com.sun.jdi.event.StepEvent;
+
 import java.util.Random;
 
 public class MSModel {
@@ -30,9 +32,20 @@ public class MSModel {
         Random rand = new Random();
         for (int[][] col : grid) {
             for (int i = 0; i < col.length; i++) {
-                col[i][0] = rand.nextInt(2);
+                if (bombsRemaining > 0) {
+                    col[i][0] = rand.nextInt(2);
+                    if (col[i][0] == 1){bombsRemaining--;}
+                }
+
+                //testing
+                if (i<col.length-1)
+                    System.out.print(col[i][0] + " ");
+                else
+                    System.out.println(col[i][0]);
+
             }
         }
+        System.out.println(bombsRemaining);
     }
 
 }

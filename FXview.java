@@ -105,8 +105,10 @@ public class FXview extends Application {
                     //If game is running ( == 1)
                     if (gameData.gameState == 1) {
                         if (event.getButton().toString().equals("PRIMARY")) {
-                            gridImages[aa][bb].setImage(emptyImage);
+                            //if state is covered -> reveal
+                                //if bomb then DIE else update board and continue
                             gameData.grid[aa][bb][0] = 1;
+                            gridImages[aa][bb].setImage(emptyImage);
                         }
                         if(event.getButton().toString().equals("SECONDARY")) {
                             gridImages[aa][bb].setImage(flagImage);
