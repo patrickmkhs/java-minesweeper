@@ -25,18 +25,18 @@ public class FXview extends Application {
         MSModel gameData = new MSModel(BOX_ROWS,BOX_COLS);
 
         //create image objects
-        Image flagImage = new Image("flag.png");
-        Image coveredImage = new Image("covered.png");
-        Image emptyImage = new Image("empty.png");
-        Image bombImage = new Image("bomb.png");
-        Image oneImage = new Image("1.png");
-        Image twoImage = new Image("2.png");
-        Image threeImage = new Image("3.png");
-        Image fourImage = new Image("4.png");
-        Image fiveImage = new Image("5.png");
-        Image sixImage = new Image("6.png");
-        Image sevenImage = new Image("7.png");
-        Image eightImage = new Image("8.png");
+        Image flagImage = new Image("images/flag.png");
+        Image coveredImage = new Image("images/covered.png");
+        Image emptyImage = new Image("images/empty.png");
+        Image bombImage = new Image("images/bomb.png");
+        Image oneImage = new Image("images/1.png");
+        Image twoImage = new Image("images/2.png");
+        Image threeImage = new Image("images/3.png");
+        Image fourImage = new Image("images/4.png");
+        Image fiveImage = new Image("images/5.png");
+        Image sixImage = new Image("images/6.png");
+        Image sevenImage = new Image("images/7.png");
+        Image eightImage = new Image("images/8.png");
 
         //creating array of rectangle objects
         ImageView[][] gridImages = new ImageView[BOX_ROWS][BOX_COLS];
