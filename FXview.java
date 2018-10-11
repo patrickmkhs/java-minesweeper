@@ -114,11 +114,30 @@ public class FXview extends Application {
                     if (gameData.gameState == 1) {
                         if (event.getButton().toString().equals("PRIMARY")) {
                             //if state is covered -> reveal
-                                //if bomb then DIE else update board and continue
-                            if(gameData.grid[aa][bb][0] == 1)
-                                gridImages[aa][bb].setImage(bombImage);
-                            else
-                                gridImages[aa][bb].setImage(emptyImage);
+                            //if bomb then DIE else update board and continue
+                            int bombs = gameData.checkBlocks(aa,bb);
+                            switch (bombs){
+                                case 0: gridImages[aa][bb].setImage(emptyImage);
+                                        break;
+                                case 1: gridImages[aa][bb].setImage(oneImage);
+                                        break;
+                                case 2: gridImages[aa][bb].setImage(twoImage);
+                                        break;
+                                case 3: gridImages[aa][bb].setImage(threeImage);
+                                        break;
+                                case 4: gridImages[aa][bb].setImage(fourImage);
+                                        break;
+                                case 5: gridImages[aa][bb].setImage(fiveImage);
+                                        break;
+                                case 6: gridImages[aa][bb].setImage(sixImage);
+                                        break;
+                                case 7: gridImages[aa][bb].setImage(sevenImage);
+                                        break;
+                                case 8: gridImages[aa][bb].setImage(eightImage);
+                                        break;
+                                case 9: gridImages[aa][bb].setImage(bombImage);
+                                        break;
+                            }
                         }
                         if(event.getButton().toString().equals("SECONDARY")) {
                             gridImages[aa][bb].setImage(flagImage);

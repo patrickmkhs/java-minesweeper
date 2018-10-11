@@ -26,7 +26,7 @@ public class MSModel {
     }
 
     public void placeBombs(){
-        int bombsRemaining = 40;
+        int bombsRemaining = 20;
         Random rand = new Random();
         for (int[][] col : grid) {
             for (int i = 0; i < col.length; i++) {
@@ -45,5 +45,51 @@ public class MSModel {
         }
         System.out.println(bombsRemaining);
     }
+
+    public int checkBlocks(int x, int y){
+        int count = 0;
+        if(grid[x][y][0] == 1){
+            System.out.println("its a bomb, you lose");
+            return 9;
+        }
+        if (grid[x-1][y][0] == 1){
+            count++;
+            System.out.println("bomb to your left");
+        }
+        if (grid[x-1][y-1][0] == 1){
+            count++;
+            System.out.println("bomb to your top left");
+        }
+        if (grid[x][y-1][0] == 1){
+            count++;
+            System.out.println("bomb to your top");
+        }
+        if (grid[x+1][y-1][0] == 1){
+            count++;
+            System.out.println("bomb to your top right");
+        }
+        if (grid[x+1][y][0] == 1){
+            count++;
+            System.out.println("bomb to your right");
+        }
+        if (grid[x+1][y+1][0] == 1){
+            count++;
+            System.out.println("bomb to your bottom right");
+        }
+        if (grid[x][y+1][0] == 1){
+            count++;
+            System.out.println("bomb to your bottom");
+        }
+        if (grid[x-1][y+1][0] == 1){
+            count++;
+            System.out.println("bomb to your bottom left");
+        }
+        System.out.println(count);
+        return count;
+    }
+
+
+
+
 
 }
